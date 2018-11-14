@@ -6,6 +6,7 @@ import 'hero.dart';
   selector: 'my-hero',
   templateUrl: 'hero_component.html',
   directives: [coreDirectives, formDirectives],
+  styleUrls: [],
 )
 
 class HeroComponent {
