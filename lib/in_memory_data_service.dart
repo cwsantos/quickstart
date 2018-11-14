@@ -39,6 +39,9 @@ class InMemoryDataService extends MockClient {
       case 'POST':
         var name = json.decode(request.body)['name'];
         var newHero = Hero(_nextId++, name);
+        if (_heroesDb.contains(newHero)) {
+          break;
+        }
         _heroesDb.add(newHero);
         data = newHero;
         break;
@@ -51,7 +54,6 @@ class InMemoryDataService extends MockClient {
       case 'DELETE':
         var id = int.parse(request.url.pathSegments.last);
         _heroesDb.removeWhere((hero) => hero.id == id);
-        // No data, so leave it as null.
         break;
       default:
         throw 'Unimplemented HTTP method ${request.method}';
